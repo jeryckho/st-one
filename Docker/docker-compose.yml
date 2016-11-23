@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+   mongo:
+      container_name: mymongo
+      image: mongo:3.2
+      ports:
+         - "27017:27017"
+   nodered:
+      container_name: myredway
+      build: ./RedWay
+      links:
+         - mongo:mongo
+      volumes:
+         - ~/node-red-data:/data
+      ports:
+         - "1880:1880"
+         - "80:80"
